@@ -28,6 +28,11 @@ import twitter4j.media.ImageUpload;
 import twitter4j.media.ImageUploadFactory;
 import twitter4j.media.MediaProvider;
 
+
+/**
+ * @author seitarocarp
+ *
+ */
 public class MessageWriteToTwitter {
 	Connection conn = null;
 
@@ -43,7 +48,7 @@ public class MessageWriteToTwitter {
 	private String dataBeseUserPass;
 
 	/**
-	 * 
+	 *
 	 * @param args
 	 * @throws TwitterException
 	 * @throws ClassNotFoundException
@@ -59,11 +64,11 @@ public class MessageWriteToTwitter {
 
 	void execute(String[] args) throws FileNotFoundException, IOException,
 			ClassNotFoundException, TwitterException, SQLException {
-		
+
 		initialize(args);
 
 		AccessToken accessToken = loadAccessToken(accessTokenFilePath);
-		
+
 		Twitter twitter = buildTwitterObject(accessToken);
 
 		List<String> messageList = readTweetTextFile(tweetTextFilePath);
@@ -72,11 +77,11 @@ public class MessageWriteToTwitter {
 			conn = DriverManager.getConnection(dataBeseServerURL,
 					dataBeseUserName, dataBeseUserPass);
 			conn.setAutoCommit(false);
-			
+
 			storeDataBase(messageList);
 			tweetImage(consumerKey, consumerSecret, accessToken, twitter);
 			tweet(twitter, messageList);
-			
+
 			conn.commit();
 		} catch (Throwable e) {
 			try {
