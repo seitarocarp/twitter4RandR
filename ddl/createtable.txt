@@ -1,0 +1,12 @@
+CREATE TABLE magazine (
+  id serial PRIMARY KEY,
+  week int,
+  published varchar(255),
+  alternate varchar(255),
+  title text,
+  content text,
+  updated varchar(255),
+  image varchar(255),
+  author_name varchar(255),
+  author_uri varchar(255)
+);
